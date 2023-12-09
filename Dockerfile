@@ -10,6 +10,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /server/build/httpserver .
 FROM linuxserver/ffmpeg
 WORKDIR /app
 
+COPY --from=build-env /server/src/test.mp4 /app/test.mp4
 COPY --from=build-env /server/build/httpserver /app/videoconverter
 
 #ENV GITHUB-SHA=<GITHUB-SHA>
