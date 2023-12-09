@@ -2,6 +2,7 @@ package main
 
 import (
 	"fftester/ffmpeg"
+	"fmt"
 	"log"
 	"runtime"
 	"time"
@@ -29,6 +30,10 @@ func main() {
 		log.Println("error converting :(")
 		return
 	}
-	log.Printf("\ntest file converted in %s\n", time.Since(start))
+	fmt.Println()
+	log.Printf("Test file (32sec) 2-pass converted in %s\n", time.Since(start))
+	score := 32 / time.Since(start).Seconds()
+
+	log.Printf("Speed: %.2fx on %d cores\n", score, runtime.GOMAXPROCS(0))
 
 }
